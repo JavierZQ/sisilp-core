@@ -1,9 +1,7 @@
 package edu.ilp.sysgailp.entity;
 
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.PrimaryKeyJoinColumn;
-import javax.persistence.Table;
+import javax.persistence.*;
+import java.security.PrivateKey;
 import java.util.Date;
 
 @Entity
@@ -15,24 +13,31 @@ public class Estudiante extends Persona {
     @Column(name = "serie",length = 18)
     private String serie;
 
+    @ManyToOne
+    @JoinColumn(name = "IDPERSONA")
+    private String escuela;
+
     public Estudiante() {
     }
 
-    public Estudiante(String codigo, String serie) {
+    public Estudiante(String codigo, String serie, String escuela) {
         this.codigo = codigo;
         this.serie = serie;
+        this.escuela = escuela;
     }
 
-    public Estudiante(Long idpersona, String codigo, String serie) {
+    public Estudiante(Long idpersona, String codigo, String serie, String escuela) {
         super(idpersona);
         this.codigo = codigo;
         this.serie = serie;
+        this.escuela = escuela;
     }
 
-    public Estudiante(String nombre, String apellido, int edad, String dni, Date fechaNacimiento, String genero, String codigo, String serie) {
+    public Estudiante(String nombre, String apellido, int edad, String dni, Date fechaNacimiento, String genero, String codigo, String serie, String escuela) {
         super(nombre, apellido, edad, dni, fechaNacimiento, genero);
         this.codigo = codigo;
         this.serie = serie;
+        this.escuela = escuela;
     }
 
     public String getCodigo() {
@@ -49,5 +54,13 @@ public class Estudiante extends Persona {
 
     public void setSerie(String serie) {
         this.serie = serie;
+    }
+
+    public String getEscuela() {
+        return escuela;
+    }
+
+    public void setEscuela(String escuela) {
+        this.escuela = escuela;
     }
 }

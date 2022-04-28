@@ -6,34 +6,36 @@ import java.util.Date;
 
 @Entity
 @Table(name = "estudiante")
-@PrimaryKeyJoinColumn(referencedColumnName = "IDPERSONA")
+@PrimaryKeyJoinColumn(referencedColumnName ="IDPERSONA")
 public class Estudiante extends Persona {
-    @Column(name = "codigo",length = 18, nullable = false)
+
+    @Column(name = "codigo",length = 10, nullable = false)
     private String codigo;
+
     @Column(name = "serie",length = 18)
     private String serie;
 
-    @ManyToOne
-    @JoinColumn(name = "IDPERSONA")
-    private String escuela;
+    @ManyToOne(optional = false, cascade = CascadeType.ALL, fetch = FetchType.LAZY)
+    private Escuela escuela;
+
 
     public Estudiante() {
     }
 
-    public Estudiante(String codigo, String serie, String escuela) {
+    public Estudiante(String codigo, String serie, Escuela escuela) {
         this.codigo = codigo;
         this.serie = serie;
         this.escuela = escuela;
     }
 
-    public Estudiante(Long idpersona, String codigo, String serie, String escuela) {
+    public Estudiante(Long idpersona, String codigo, String serie, Escuela escuela) {
         super(idpersona);
         this.codigo = codigo;
         this.serie = serie;
         this.escuela = escuela;
     }
 
-    public Estudiante(String nombre, String apellido, int edad, String dni, Date fechaNacimiento, String genero, String codigo, String serie, String escuela) {
+    public Estudiante(String nombre, String apellido, int edad, String dni, Date fechaNacimiento, String genero, String codigo, String serie, Escuela escuela) {
         super(nombre, apellido, edad, dni, fechaNacimiento, genero);
         this.codigo = codigo;
         this.serie = serie;
@@ -56,11 +58,11 @@ public class Estudiante extends Persona {
         this.serie = serie;
     }
 
-    public String getEscuela() {
+    public Escuela getEscuela() {
         return escuela;
     }
 
-    public void setEscuela(String escuela) {
+    public void setEscuela(Escuela escuela) {
         this.escuela = escuela;
     }
 }

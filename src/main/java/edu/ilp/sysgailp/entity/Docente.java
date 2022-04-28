@@ -8,8 +8,9 @@ import java.util.Date;
 
 @Entity
 @Table(name = "docente")
-@PrimaryKeyJoinColumn(referencedColumnName = "IDPERSONA")
+@ PrimaryKeyJoinColumn ( referencedColumnName = "IDPERSONA" )
 public class Docente extends Persona {
+
     @Column(name = "cod_docente",length = 15)
     private String CodDocente;
 

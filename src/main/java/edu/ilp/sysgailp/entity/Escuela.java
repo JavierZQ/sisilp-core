@@ -14,6 +14,9 @@ public class Escuela {
     private String denominacion;
     private String codigoescuela;
 
+    @OneToMany(mappedBy = "escuela")
+    private List<Estudiante> estudiantes;
+
     public Escuela() {
     }
 
